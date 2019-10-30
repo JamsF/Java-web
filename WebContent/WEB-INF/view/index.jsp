@@ -7,16 +7,16 @@
 <meta charset="ISO-8859-1">
 <title>学生后台管理系统</title>
 <style type="text/css">
-body {
+html,body {
 	margin: 0px;
+	width: 100%;
+	height: 100%;
 }
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 200px;
-    height: 625px;
-    background-color: rgb(1,207,255);
+    padding-top: 20px;
 }
  
 li a {
@@ -34,7 +34,7 @@ li a:hover {
 </style>
 </head>
 <body>
-	<div id="left_navi">
+	<div style="width: 200px;height: 100%;background-color: rgb(1,207,255);float: left;">
 		<ul>
 			<li><a href="Index?tojsp=<%="finStudent"%>">查询学生信息</a></li>
 			<li><a href="Index?tojsp=<%="addStudent"%>">注册学生信息</a></li>
