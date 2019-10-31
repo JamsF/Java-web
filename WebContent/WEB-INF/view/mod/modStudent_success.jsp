@@ -51,8 +51,8 @@ li a:hover {
 	</div>
 	<div style="float: left;margin-left: 30px;">
 		<h1 style="margin-top: 15px;margin-left: 15px;">修改学生信息</h1>
-		<p style="font-size: 20px;color: red;margin-left: 15px;margin-top: 20px;float: left;">学生信息修改成功</p>
-		<p style="font-size: 20px;color: red;margin-left: 15px;margin-top: 20px;float: left;">修改后信息如下</p>
+		<p style="font-size: 20px;color: red;margin-left: 15px;margin-top: 20px;margin-bottom: 30px;">学生信息修改成功，  修改后信息如下</p>
+		
 		<table style="width: 1100px;border: 1px;text-align: center;">
 				<tr>
 					<th>学号</th>

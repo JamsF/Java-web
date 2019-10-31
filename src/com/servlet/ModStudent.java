@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.entity.Student;
 import com.utils.GetConnection;
+
 
 /**
  * Servlet implementation class ModStudent
@@ -42,25 +41,45 @@ public class ModStudent extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		
 		String studentno = request.getParameter("studentno");
-		String sname = request.getParameter("sname");
-		String sex = request.getParameter("sex");
-		String birthday = request.getParameter("birthday");
-		String classno = request.getParameter("classno");
+		
+		String sname = null; 
+		if(request.getParameter("sname") != "")
+			sname = request.getParameter("sname");
+		
+		String sex = null;
+		if(request.getParameter("sex") != "")
+			sex = request.getParameter("sex");
+		
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+		Date birthday = null;
+		String bir = request.getParameter("birthday");
+		try {
+			if(bir != null)
+				birthday = sf.parse(bir);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			birthday = null;
+		}
+		
+		String classno = null;
+		if(request.getParameter("classno") != "")
+			classno = request.getParameter("classno");
+		
 		String point_str = request.getParameter("point");
 		double point = 0.00;
 		if(point_str != null)
-			point = Double.parseDouble(point_str);
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		System.out.println("studentno: " + studentno);
-		System.out.println("sname: " + sname);
-		System.out.println("sex: " + sex);
-		System.out.println("birthday: " + birthday);
-		System.out.println("classno: " + classno);
-		System.out.println("point: " + point);
-		System.out.println("phone: " + phone);
-		System.out.println("email: " + email);
+			point = Double.parseDouble("".equals(point_str)?"0.00":point_str);
+		
+		String phone = null;
+		if(request.getParameter("phone") != "")
+			phone = request.getParameter("phone");
+		
+		String email = null;
+		if(request.getParameter("email") != "")
+			email = request.getParameter("email");
+		
 		String test = "select studentno from student where studentno = '" + studentno + "'";
 		String modsname = "UPDATE student SET sname = '" + sname +"' WHERE studentno = '" + studentno + "' ";
 		String modsex = "UPDATE student SET sex = '" + sex +"' WHERE studentno = '" + studentno + "' ";
@@ -101,7 +120,8 @@ public class ModStudent extends HttpServlet {
 				ResultSet rs = sta.executeQuery(sql);
 				List<Student> list = new ArrayList<>();
 				while(rs.next()) {
-					if(studentno.equals(studentno) && sname.equals(sname)) {
+					String sno = rs.getString(1);
+					if(studentno.equals(sno)) {
 						Student stu = new Student();
 						stu.setStudentno(rs.getString(1));
 						stu.setSname(rs.getString(2));
