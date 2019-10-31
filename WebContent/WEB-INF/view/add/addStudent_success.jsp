@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>查询学生信息</title>
+<title>注册学生信息</title>
 <style type="text/css">
 html,body {
 	margin: 0px;

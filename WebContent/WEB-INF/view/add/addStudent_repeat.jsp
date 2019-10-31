@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>查询学生信息</title>
+<title>注册学生信息</title>
 <style type="text/css">
 html,body {
 	margin: 0px;
@@ -41,21 +41,10 @@ li a:hover {
 			<li><a href="Index?tojsp=<%="outStudent"%>">退出登录</a></li>
 		</ul>
 	</div>
-	<div style="float: left;margin-left: 30px;">
-		<h1 style="margin-top: 15px;margin-left: 15px;">查询学生信息</h1>
-		<form action="FinStudent" method="post" style="margin-top:50px;margin-bottom: 80px;margin-left: 15px;">
-			<table style="width: 300px;font-size: 17px;float: left;">
-				<tr>
-					<td>学号</td>
-					<td><input type="text" name="studentno" required="required" style="width:200px;height:25px;border: none;border-bottom:1px solid #000;"></td>
-				</tr>
-				<tr>
-					<td>姓名</td>
-					<td><input type="text" name="sname" required="required" style="width:200px;height:25px;border: none;border-bottom:1px solid #000;"></td>
-				</tr>
-			</table>
-			<input type="submit" value="查询" style="width: 120px;height: 40px;margin-left: 5px;margin-top:23px;border-radius: 17px;font-size: 18px;border: none;background-color: rgb(1,207,255);">
-		</form>
+	<div style="float: left;width: 1100px;">
+		<h1 style="margin-top: 15px;margin-left: 15px;margin-bottom:50px;color: red;width: 500px;">学生信息注册失败!!</h1>
+		<p style="float: left;font-size: 20px;margin-left: 25px;">学生信息已注册，</p>
+		<a href="Index?tojsp=<%="modStudent"%>" style="color: rgb(198,47,47);float: left;font-size: 20px;margin-top: 20px;">现在去修改</a>
 			<table style="width: 1100px;border: 1px;text-align: center;">
 				<tr>
 					<th>学号</th>

@@ -1,11 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>查询学生信息</title>
+<meta charset="ISO-8859-1">
+<title>修改学生信息</title>
 <style type="text/css">
+* {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
 html,body {
 	margin: 0px;
 	width: 100%;
@@ -25,6 +31,7 @@ li a {
     text-decoration: none;
 }
  
+/* 鼠标移动到选项上修改背景颜色 */
 li a:hover {
     background-color: #555;
     color: white;
@@ -40,23 +47,13 @@ li a:hover {
 			<li><a href="Index?tojsp=<%="modStudent"%>">修改学生信息</a></li>
 			<li><a href="Index?tojsp=<%="outStudent"%>">退出登录</a></li>
 		</ul>
+		
 	</div>
 	<div style="float: left;margin-left: 30px;">
-		<h1 style="margin-top: 15px;margin-left: 15px;">查询学生信息</h1>
-		<form action="FinStudent" method="post" style="margin-top:50px;margin-bottom: 80px;margin-left: 15px;">
-			<table style="width: 300px;font-size: 17px;float: left;">
-				<tr>
-					<td>学号</td>
-					<td><input type="text" name="studentno" required="required" style="width:200px;height:25px;border: none;border-bottom:1px solid #000;"></td>
-				</tr>
-				<tr>
-					<td>姓名</td>
-					<td><input type="text" name="sname" required="required" style="width:200px;height:25px;border: none;border-bottom:1px solid #000;"></td>
-				</tr>
-			</table>
-			<input type="submit" value="查询" style="width: 120px;height: 40px;margin-left: 5px;margin-top:23px;border-radius: 17px;font-size: 18px;border: none;background-color: rgb(1,207,255);">
-		</form>
-			<table style="width: 1100px;border: 1px;text-align: center;">
+		<h1 style="margin-top: 15px;margin-left: 15px;">修改学生信息</h1>
+		<p style="font-size: 20px;color: red;margin-left: 15px;margin-top: 20px;float: left;">学生信息修改成功</p>
+		<p style="font-size: 20px;color: red;margin-left: 15px;margin-top: 20px;float: left;">修改后信息如下</p>
+		<table style="width: 1100px;border: 1px;text-align: center;">
 				<tr>
 					<th>学号</th>
 					<th>姓名</th>

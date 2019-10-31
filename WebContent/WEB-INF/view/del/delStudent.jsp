@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>学生后台管理系统</title>
+<title>删除学生信息</title>
 <style type="text/css">
 * {
 	padding: 0px;
@@ -47,8 +47,23 @@ li a:hover {
 			<li><a href="Index?tojsp=<%="modStudent"%>">修改学生信息</a></li>
 			<li><a href="Index?tojsp=<%="outStudent"%>">退出登录</a></li>
 		</ul>
-		
 	</div>
-	<h1>页面开发中</h1>
+	<div style="float: left;margin-left: 30px;">
+		<h1 style="margin-top: 15px;margin-left: 15px;">删除学生信息</h1>
+		<p style="margin-top: 15px;margin-left: 15px;font-size: 20px;color: red;">数据无价   一经删除   不可找回   谨慎操作</p>
+		<form action="DelStudent" method="post" style="margin-top:50px;margin-bottom: 80px;margin-left: 15px;">
+			<table style="width: 300px;font-size: 17px;float: left;">
+				<tr>
+					<td>学号</td>
+					<td><input type="text" name="studentno" required="required" style="width:200px;height:25px;border: none;border-bottom:1px solid #000;"></td>
+				</tr>
+				<tr>
+					<td>姓名</td>
+					<td><input type="text" name="sname" required="required" style="width:200px;height:25px;border: none;border-bottom:1px solid #000;"></td>
+				</tr>
+			</table>
+			<input type="submit" value="删除" style="width: 120px;height: 40px;margin-left: 5px;margin-top:23px;border-radius: 17px;font-size: 18px;border: none;background-color: rgb(1,207,255);">
+		</form>
+	</div>
 </body>
 </html>

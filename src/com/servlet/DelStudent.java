@@ -13,20 +13,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.entity.Student;
 import com.utils.GetConnection;
 
 /**
- * Servlet implementation class AddStudent
+ * Servlet implementation class DelStudent
  */
-@WebServlet("/AddStudent")
-public class AddStudent extends HttpServlet {
+@WebServlet("/DelStudent")
+public class DelStudent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddStudent() {
+    public DelStudent() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,35 +37,22 @@ public class AddStudent extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String studentno = request.getParameter("studentno");
-		String sname = request.getParameter("sname");
-		String sex = request.getParameter("sex");
-		String birthday = request.getParameter("birthday");
-		String classno = request.getParameter("classno");
-		String point = request.getParameter("point");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		String addsql = "INSERT student VALUE('"+studentno+"','"+sname+"','"+sex+"','"+birthday+"','"+classno+"',"+point+",'"+phone+"','"+email+"')";
-		String test = "select studentno from student where studentno = '" + studentno + "'";
-		Connection conn = GetConnection.getConn();
-		boolean canInsert = true;
 		Statement sta = null;
+		boolean flag = false;
+		String stuno = request.getParameter("studentno");
+		String stuname = request.getParameter("sname");
+		String sql = "select * from student";
+		String del = "delete from student where studentno ='" + stuno + "'";
+		Connection conn = GetConnection.getConn();
 		try {
 			sta = conn.createStatement();
-			ResultSet rs1 = sta.executeQuery(test);
-			while(rs1.next()) {
-				String id = rs1.getString(1);
-				if(id.equals(studentno)) {
-					canInsert = false;
-					break;
-				}	
-			}
-			if(canInsert == true)
-				sta.executeUpdate(addsql);
-			ResultSet rs = sta.executeQuery("select * from student");
+			ResultSet rs = sta.executeQuery(sql);
 			List<Student> list = new ArrayList<>();
 			while(rs.next()) {
-				if(studentno.equals(rs.getString(1))) {
+				String studentno = rs.getString(1);
+				String sname = rs.getString(2);
+				if(stuno.equals(studentno) && stuname.equals(sname)) {
+					flag = true;
 					Student stu = new Student();
 					stu.setStudentno(rs.getString(1));
 					stu.setSname(rs.getString(2));
@@ -78,20 +66,19 @@ public class AddStudent extends HttpServlet {
 					break;
 				}
 			}
-			if(canInsert == false) {
+			int rs1 = sta.executeUpdate(del);
+			if(rs1 != 0 && flag) {
 				request.setAttribute("list",list);
-				request.getRequestDispatcher("WEB-INF/view/add/addStudent_repeat.jsp").forward(request, response);
+				request.getRequestDispatcher("WEB-INF/view/del/delStudent_success.jsp").forward(request, response);
 			}
 			else {
-				request.setAttribute("list",list);
-				request.getRequestDispatcher("WEB-INF/view/add/addStudent_success.jsp").forward(request, response);
+				request.getRequestDispatcher("WEB-INF/view/del/delStudent_failed.jsp").forward(request, response);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
